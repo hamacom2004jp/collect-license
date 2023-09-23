@@ -16,6 +16,7 @@ def main(out_dir:Path, clear:bool):
     output_str = proc.stdout
     license_json = json.loads(output_str)
     for license_info in license_json:
-        output_file = out_dir / f"LICENSE.{license_info['Name']}.{license_info['Version']}({license_info['License']}).txt"
+        ln = license_info['License'].translate(str.maketrans({'\\':'','/':'',':':'','*':'','?':'','"':'','<':'','>':'','|':''}))
+        output_file = out_dir / f"LICENSE.{license_info['Name']}.{license_info['Version']}({ln}).txt"
         with open(output_file, "w", encoding="UTF-8") as f:
             f.write(license_info['LicenseText'])

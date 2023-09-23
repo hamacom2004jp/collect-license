@@ -1,3 +1,4 @@
+from collectlicense import version
 from setuptools import setup
 
 DESCRIPTION = 'collect-license: Collect license files for packages installed with pip.'
@@ -7,7 +8,7 @@ AUTHOR_EMAIL = 'hamacom2004jp@gmail.com'
 URL = 'https://github.com/hamacom2004jp/collect-license'
 LICENSE = 'MIT'
 DOWNLOAD_URL = URL
-VERSION = '0.0.1'
+VERSION = version.__version__
 PYTHON_REQUIRES = '>=3.8'
 INSTALL_REQUIRES = [
     'PyYAML>=6.0.1',
@@ -26,6 +27,7 @@ with open('README.md', 'r', encoding='utf-8') as fp:
     readme = fp.read()
 LONG_DESCRIPTION = readme
 LONG_DESCRIPTION_CONTENT_TYPE = 'text/markdown'
+RESORCE_TEXT_FILES = dict(collectlicense=['config.yml','logconf.yml'])
 
 setup(
     name=NAME,
@@ -43,5 +45,7 @@ setup(
     classifiers=CLASSIFIERS,
     license=LICENSE,
     keywords=KEYWORDS,
-    install_requires=INSTALL_REQUIRES
+    install_requires=INSTALL_REQUIRES,
+    package_data=RESORCE_TEXT_FILES,
+    include_package_data=True
 )

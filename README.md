@@ -21,7 +21,7 @@ python -m collectlicense --out .licenses --clear
 
 ## ソースから実行する方法
 
-``` cmd
+``` cmd or bash
 git clone https://github.com/hamacom2004jp/collect-license.git
 cd collect-license
 python -m venv .venv
@@ -30,5 +30,50 @@ python.exe -m pip install --upgrade pip
 pip install -r requirements.txt
 python -m collectlicense
 deactivate
+```
+
+## pyplにアップするための準備
+
+``` cmd or bash
+pip install wheel twine
+python setup.py sdist
+python setup.py bdist_wheel
+```
+
+- pyplのユーザー登録【本番】
+  https://pypi.org/account/register/
+
+- pyplのユーザー登録【テスト】
+  https://test.pypi.org/account/register/
+
+- それぞれ2要素認証とAPIトークンを登録
+
+- ホームディレクトリに```.pypirc```を作成
+``` .pypirc
+[distutils]
+index-servers =
+  pypi
+  testpypi
+
+[pypi]
+repository: https://upload.pypi.org/legacy/
+username: __token__
+password: 本番環境のAPIトークン
+
+[testpypi]
+repository: https://test.pypi.org/legacy/
+username: __token__
+password: テスト環境のAPIトークン
+```
+
+- テスト環境にアップロード
+  ```.pyplrc```を作っていない場合はコマンド実行時にusernameとpasswordを要求される
+  成功するとURLが返ってくる。
+``` cmd or bash
+twine upload --repository testpypi dist/*
+```
+- pipコマンドのテスト
+``` cmd or bash
+pip install -i https://test.pypi.org/simple/ collectlicense
 ```
 

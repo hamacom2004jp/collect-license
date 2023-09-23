@@ -1,9 +1,7 @@
 from pathlib import Path
 import argparse
-import os
 
 
-HOME_DIR = os.path.expanduser("~")
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog='python -m collectlicense',

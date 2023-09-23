@@ -1,3 +1,4 @@
+from importlib import resources
 from pathlib import Path
 import logging
 import logging.config
@@ -12,12 +13,12 @@ CMD = None
 
 def load_config():
     global CMD
-    logging.config.dictConfig(yaml.safe_load(open(PGM_DIR / "logconf.yml", encoding='UTF-8').read()))
+    logconf_str = resources.read_text('collectlicense','logconf.yml')
+    logging.config.dictConfig(yaml.safe_load(logconf_str))
     logger = logging.getLogger('main')
-    with open(PGM_DIR / 'config.yaml') as f:
-        config = yaml.safe_load(f)
-        c = config['collectlicense']['common']
-        CMD = c['CMD']
+    config_str = resources.read_text('collectlicense','config.yml')
+    config = yaml.safe_load(config_str)
+    CMD = config['collectlicense']['common']['CMD']
     return config, logger
 
 def mkdirs(dir_path:Path):

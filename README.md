@@ -18,6 +18,9 @@ pip install collectlicense
 ``` cmd or bash
 python -m collectlicense --out .licenses --clear
 ```
+- --out：収集したライセンスファイルの保存先ディレクトリ
+- --clear：--outで指定したディレクトリを削除してから収集する
+
 
 ## ソースから実行する方法
 
@@ -77,3 +80,7 @@ twine upload --repository testpypi dist/*
 pip install -i https://test.pypi.org/simple/ collectlicense
 ```
 
+- 本番環境にアップロード
+``` cmd or bash
+twine upload --repository pypi dist/*
+```

@@ -38,7 +38,6 @@ deactivate
 ## pyplにアップするための準備
 
 ``` cmd or bash
-pip install wheel twine
 python setup.py sdist
 python setup.py bdist_wheel
 ```

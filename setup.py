@@ -1,6 +1,7 @@
 from collectlicense import version
 from setuptools import setup
 
+
 DESCRIPTION = 'collect-license: Collect license files for packages installed with pip.'
 NAME = 'collectlicense'
 AUTHOR = 'hamacom2004jp'
@@ -20,8 +21,14 @@ PACKAGES = [
 ]
 KEYWORDS = 'LICENSE.txt LICENSE Collect'
 CLASSIFIERS=[
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Information Technology',
+    'Intended Audience :: System Administrators',
     'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python :: 3.8'
+    'Natural Language :: Japanese',
+    'Programming Language :: Python',
+    'Topic :: Utilities'
 ]
 with open('README.md', 'r', encoding='utf-8') as fp:
     readme = fp.read()
